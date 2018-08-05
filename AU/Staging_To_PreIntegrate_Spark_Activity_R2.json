@@ -1,0 +1,1243 @@
+{
+    "name": "Staging_To_PreIntegrate_Spark_Activity_R2",
+    "properties": {
+        "description": "",
+        "activities": [
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_B2B_Activity.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_B2B_Activity_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Activity_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_B2B_Incentive.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_B2B_Incentive_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Incentive_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_B2B_Tier.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Tier_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Tier_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_B2B_Fact_Transaction.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_B2B_Transaction_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_TransactionFact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_B2B_CIS_Mapping.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_B2B_CIS_Mapping_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_CIS_Mapping_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_B2BCISTracking.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_B2BCISTracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2BCISTracking_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+           {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_Customer_Credit_Term.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Customer_Credit_Term_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Customer_Credit_Term_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_Pick_List.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Pick_List_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_PickList_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_End_Market_UOM.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_EndMarketUOM_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_EndMarketUOM_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Dimension_Location.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Location_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Location_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Sales_Return_Request_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_SalesReturnRequestHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_SalesReturnRequestHeader_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_SalesReturnRequestDetail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_SalesReturnRequestDetail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_SalesReturnRequestDetail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_SalesOrdersHeader.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_OrdersHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_SalesOrdersHeaderFact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },			
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_SalesOrderLine.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_OrdersLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_SalesOrdersLineFact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },            
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_SalesReturnInvoiceHeader.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_SalesReturnInvoiceHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_SalesReturnInvoiceHeader_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Sales_ReturnInvoiceDetail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_SalesReturnDetailsInvoiceLine"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Return_Details",
+                "linkedServiceName": "HDInsightLinkedService"
+            },            
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Invoice_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_InvoiceHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_InvoiceHeader_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Invoice_Line.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_InvoiceLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_InvoiceLine_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Invoice_Overdue.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_InvoiceOverdue_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_InvoiceOverdue_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },   
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Van_Unload_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Van_Unload_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_VanUnloadHeaderFact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },			
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Van_Unload_Line.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Van_Unload_Line_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Van_Unload_Line_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },			
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Van_Delivery_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Van_Delivery_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_VanDeliveryHeaderFact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Van_Delivery_Line.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Van_Delivery_Line_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Van_Delivery_Line_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },		
+
+			 {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Sales_Target_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Sales_Target_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Target_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },			
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Sales_Target_Detail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Sales_Target_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Target_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Payment_Reconciliation_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Payment_Recon_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Payment_Recon_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Payment_Reconciliation_Detail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Payment_Recon_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Payment_Recon_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            		
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Stock_Recon.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Stock_Recon_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Stock_Recon_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Stock_Recon_Details.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_StockReconciliationDetails_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_StockReconciliationDetails_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Stock_Allocation.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Stock_Allocation_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Stock_Allocation_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+			{
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Stock_Allocation_Line.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Stock_Allocation_Line"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Stock_Allocation_Line_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            }  ,
+
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Loyalty_Points_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Loyalty_Points_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Loyalty_Points_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+              
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Loyalty_Points_Detail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Loyalty_Points_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Loyalty_Points_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Rep_Account_Header.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_RepAccountHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_RepAccountHeader_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            }		
+			,
+
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Rep_Account_Detail.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_RepAccountDetail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_RepAccountDetail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+
+	        {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Odometer_Tracking.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Odometer_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Odometer_Tracking_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Gross_Margin.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Gross_Margin_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Gross_Margin_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+           
+            
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Price_Tracking.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Price_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Price_Tracking_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Trip_Sheet.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Trip_Sheet_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Trip_Sheet_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Credit_Note.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Credit_Note_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Credit_Note_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraSparkSolution.jar",
+                    "className": "com.batpetra.rawtointegrate.BatPetraETL",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/ConfigFiles/StagingToPreIntegrate/Common/Integration/Config_Fact_Payment.txt",
+                        "AU"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+
+                "outputs": [
+                    {
+                        "name": "PreIntegrate_Payment_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "10:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Payment_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            }
+            
+        ],
+        "start": "2017-11-11T00:00:00Z",
+        "end": "2017-11-12T00:00:00Z",
+        "isPaused": false,
+        "pipelineMode": "Scheduled"
+    }
+}

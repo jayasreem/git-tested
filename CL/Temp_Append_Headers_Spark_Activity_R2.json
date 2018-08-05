@@ -1,0 +1,1167 @@
+{
+    "name": "Temp_Append_Headers_Spark_Activity_R2",
+    "properties": {
+        "description": "..",
+        "activities": [
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Dimension_CustomerCreditTerm.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Customer_Credit_Term_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Customer_Credit_Term_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Dimension_Customer_Credit_Term",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_PaymentReconHeader.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Payment_Recon_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Payment_Recon_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Payment_Recon_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Van_Delivery_Header_Fact.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Van_Delivery_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Van_Delivery_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Van_Delivery_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Van_Unload.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Van_Unload_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Van_Unload_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Van_Unload_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_B2B_Fact_Transaction.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_B2B_Transaction_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2B_Transaction_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Transaction_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_SalesOrderHeader.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_SalesOrderHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_SalesOrderHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Order_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_SalesOrderLine.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_SalesOrderLine_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_SalesOrderLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Order_Line_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Invoice_Header.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_InvoiceHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_InvoiceHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Fact_InvoiceHeader",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Invoice_Line.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_InvoiceLine_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_InvoiceLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Fact_InvoiceLine",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_B2B_Activity_Dimension.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_B2B_Activity_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2B_Activity_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Activity_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_B2B_Incentive_Dimension.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_B2B_Incentive_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2B_Incentive_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_Incentive_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Invoice_Overdue.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_InvoiceOverdue_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_InvoiceOverdue_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Fact_InvoiceOverdue",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Dimension_Tier.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Tier_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Tier_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Fact_Tier",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_B2BCISTracking.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_B2BCISTracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2BCISTracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Fact_B2BCISTracking",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Stock_Recon.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Stock_Recon_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Stock_Recon_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Stock_Recon_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Sales_Target.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Sales_Target_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Sales_Target_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Target_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Payment.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Payment_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Payment_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Payment_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Gross_Margin.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Gross_Margin_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Gross_Margin_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Gross_Margin_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Credit_Note.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Credit_Note_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Credit_Note_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Credit_Note_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Odometer_Tracking.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Odometer_Tracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Odometer_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Odometer_Tracking_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Stock_Allocation.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Stock_Allocation_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Stock_Allocation_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Stock_Allocation_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Price_Tracking.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Price_Tracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Price_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Price_Tracking_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Van_Delivery_Line.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Van_Delivery_Line_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Van_Delivery_Line_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Van_Delivery_Line_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Location_Dimension.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Location_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Location_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Location_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_View_B2B_CIS_Transaction.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_View_B2B_Transaction_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2B_Transaction_View_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_View_CIS_B2B_Transaction_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_B2B_CIS_Mapping_Fact.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_B2B_CIS_Mapping_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_B2B_CIS_Mapping_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_B2B_CIS_Mapping_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Sales_Target_Detail.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Sales_Target_Detail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Sales_Target_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Sales_Target_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Rep_Account_Detail.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Rep_Account_Detail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Rep_Account_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Rep_Account_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Rep_Account_Header.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_RepAccountHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Rep_Account_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Rep_Account_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Trip_Sheet_Fact.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_TripSheet_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Trip_Sheet_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Trip_Sheet_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_View_Unit_Of_Measure.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Unit_Of_Measure_View"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Unit_Of_Measure_View"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Unit_Of_Measure_View",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_LoyaltyPoints_Header.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_LoyaltyPoints_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_LoyaltyPoints_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_LoyaltyPoints_Header_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Fact_Loyalty_Points_Detail.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_LoyaltyPoints_Detail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_LoyaltyPoints_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_LoyaltyPoints_Detail_Fact",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Dimension_Pick_List.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_Pick_List_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_Pick_List_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_Pick_List_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            },
+            {
+                "type": "HDInsightSpark",
+                "typeProperties": {
+                    "rootPath": "adfsparkjar",
+                    "entryFilePath": "BatPetraTempTransformation.jar",
+                    "className": "com.batpetra.templayer.BatPetraTempTransformation",
+                    "arguments": [
+                        "adl://batadlspdnepetradev01.azuredatalakestore.net/Global/Working/CL/ConfigFiles/CL_TempLayerConfig_Dimension_End_Market_UOM.txt"
+                    ],
+                    "getDebugInfo": "Always"
+                },
+                "inputs": [
+                    {
+                        "name": "Temp_EndMarketUOM_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_AppendHeader_EndMarketUOM_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Spark_Activity_EndMarketUOM_Dimension",
+                "linkedServiceName": "HDInsightLinkedService"
+            }
+        ],
+        "start": "2017-11-11T00:00:00Z",
+        "end": "2017-11-12T00:00:00Z",
+        "isPaused": false,
+        "pipelineMode": "Scheduled"
+    }
+}
