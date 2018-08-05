@@ -25,7 +25,7 @@
                     "concurrency": 1
                 },
                 "scheduler": {
-                    "frequency": "Day",
+                    "frequency": "fine",
                     "interval": 1
                 },
                 "name": "B2B_Activity_Dimension_Temp_Extract_Hive_Activity",
