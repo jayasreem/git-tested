@@ -1,0 +1,970 @@
+{
+    "name": "Integrate_To_Temp_Hive_Activity_R2",
+    "properties": {
+        "description": "...",
+        "activities": [
+            
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_B2B_Activity_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2B_Activity_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_B2B_Activity_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "B2B_Activity_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_B2B_Incentive_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2B_Incentive_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_B2B_Incentive_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "B2B_Incentive_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Tier_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Tier_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Tier_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Tier_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_B2B_Transaction_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2B_Transaction_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_B2B_Transaction_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "B2BTransaction_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_B2BCISTracking_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2BCISTracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_B2BCISTracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "B2BCISTracking_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_B2B_CIS_Mapping_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2B_CIS_Mapping_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_B2B_CIS_Mapping_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "B2BCISMapping_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Customer_Credit_Term_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Customer_Credit_Term_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Customer_Credit_Term_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Customer_Credit_Term_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Pick_List_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Pick_List_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Pick_List_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Pick_List_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_END_MARKET_UOM_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_EndMarketUOM_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_EndMarketUOM_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "ENDMARKETUOM_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Location_Dimension.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Location_Dimension"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Location_Dimension"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Location_Dimension_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Sales_Order_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_SalesOrderHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_SalesOrderHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Sales_Order_Header_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Sales_Order_Line_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_SalesOrderLine_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_SalesOrderLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Sales_Order_Line_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Invoice_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_InvoiceHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_InvoiceHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "InvoiceHeader_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Invoice_Line_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_InvoiceLine_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_InvoiceLine_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "InvoiceLine_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Invoice_Overdue_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_InvoiceOverdue_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_InvoiceOverdue_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "InvoiceOverdue_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Van_Delivery_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Van_Delivery_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Van_Delivery_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Van_Delivery_Header_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Van_Delivery_Line_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Van_Delivery_Line_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Van_Delivery_Line_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Van_Delivery_Line_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Van_Unload_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Van_Unload_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Van_Unload_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Van_Unload_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Payment_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Payment_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Payment_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Payment_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Payment_Recon_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Payment_Recon_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Payment_Recon_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Payment_Recon_Header_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Gross_Margin_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Gross_Margin_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Gross_Margin_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "GrossMargin_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Sales_Target_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Sales_Target_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Sales_Target_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Sales_Target_Header_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_SalesTargetDetail_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Sales_Target_Detail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Sales_Target_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Sales_Target_Detail_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Stock_Recon_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Stock_Recon_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Stock_Recon_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Stock_Recon_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Credit_Note_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Credit_Note_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Credit_Note_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Credit_Note_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Odometer_Tracking_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Odometer_Tracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Odometer_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Odometer_Tracking_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Stock_Allocation_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Stock_Allocation_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Stock_Allocation_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Stock_Allocation_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_EXTRACT_Temp_Price_Tracking_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Price_Tracking_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Price_Tracking_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Price_Tracking_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			{
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Rep_Account_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_RepAccountHeader_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_RepAccountHeader_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "RepAccountHeader_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Rep_Account_Detail_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_RepAccountDetail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Rep_Account_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Rep_Account_Detail_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Trip_Sheet_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Trip_Sheet_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_TripSheet_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "TripSheet_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_LoyaltyPoints_Header_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Loyalty_Points_Header_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_LoyaltyPoints_Header_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "LoyaltyPoints_Header_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Loyalty_Points_Detail_Fact.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Loyalty_Points_Detail_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_LoyaltyPoints_Detail_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "LoyaltyPoints_Detail_Fact_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            },
+			 {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_View_B2B_CIS_Transaction.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_B2B_Transaction_Fact"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_View_B2B_Transaction_Fact"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Temp_Extract_View_B2B_CIS_Transaction",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            }
+			,
+            
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "https://batstorpdnepetradev01.blob.core.windows.net/hivescripts/AU/TempExtractsToAAS/AU_Extract_Temp_Unit_Of_Measure_View.HQL",
+                    "scriptLinkedService": "AzureStorageLinkedService"
+                },
+                "inputs": [
+                    {
+                        "name": "Integrate_Unit_Of_Measure_View"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Temp_Unit_Of_Measure_View"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "Unit_Of_Measure_View_Temp_Extract_Hive_Activity",
+                "linkedServiceName": "HDInsightHiveLinkedService"
+            }
+        ],
+        "start": "2017-11-11T00:00:00Z",
+        "end": "2017-11-12T00:00:00Z",
+        "isPaused": false,
+        "pipelineMode": "Scheduled"
+    }
+}
